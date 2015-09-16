@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Template E-ADV</title>
+<script type           = "application/javascript" src="js/authorization.js"></script>
+</head>
+<frameset rows="9%, *" >
+<frame src="top_menu.html" name="top_page" />
+	
+<frameset cols="15%,*">
+	<frame src="menu.html" name="menu_page" />
+	
+	<div><frame src="e-adv-home-page.html" name="main_page" />
+  </div>
+</frameset>
+
+   <noframes>
+   <body onload="getAuthorization()">
+      Your browser does not support frames.
+   </body>
+   </noframes>
+</frameset>
+</html>

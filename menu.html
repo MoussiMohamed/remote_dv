@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+
+		<style>
+			/* following three (cascaded) are equivalent to above three meta viewport statements */
+			/* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+			/* see http://dev.w3.org/csswg/css-device-adapt/ */
+			@-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+			@-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+			/*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+		</style>
+		<title>menu</title>
+	</head>
+	<body bgcolor="#f5f5f5">
+		<style>
+			p, ul, li, div, nav {
+
+				padding: 0;
+				margin: 0;
+			}
+
+			body {
+				font-family: Calibri;
+			}
+
+			#menu {
+				overflow: auto;
+				position: relative;
+				z-index: 2;
+				margin: -8px;
+			}
+
+			.parent-menu {
+				background-color: #0c8fff;
+				/*min-width:15%;
+				 max-width:85%;
+				 */
+				width: 100%;
+				float: left;
+			}
+
+			#menu ul {
+				list-style-type: none;
+			}
+
+			#menu ul li a {
+
+				padding: 10px 15px;
+				display: block;
+				color: #fff;
+				text-decoration: none;
+				font-weight: bold;
+			}
+
+			#menu ul li a:hover {
+				background-color: #007ee9;
+			}
+
+		</style>
+
+		<nav id="menu">
+
+			<ul class="parent-menu">
+
+				<li>
+					<a href="home.html" target="main_page">Comptes</a>
+
+				</li>
+				<li>
+					<a href="listProduct.html" target="main_page">Produits</a>
+
+				</li>
+				<li>
+					<a href="commentaire.html" target="main_page">Commentaires</a>
+
+				</li>
+				<li>
+					<a href="statistique.html" target="main_page">Rapports</a>
+
+				</li>
+
+				<li>
+					<a href="listDoctor.html" target="main_page">Gestion Médecins</a>
+
+				</li>
+
+				<li>
+					<a href="listRegion.html" target="main_page">Gestion Régions</a>
+
+				</li>
+
+			</ul>
+
+		</nav>
+
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>top panel</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<META HTTP-EQUIV="refresh" CONTENT="2">
+<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+  
+  <style>
+    /* following three (cascaded) are equivalent to above three meta viewport statements */
+    /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+    /* see http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+        /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+    </style>
+    <script type="application/javascript" src="js/temp.js"></script>
+</head>
+
+   <body bgcolor="#f0f0f0" onload="doVerifLoggedUser()">
+   	<table align="center">
+   		<tr>
+      <td><a href="index.html" target="_top" id="topLinkConnect"  style=" color: red;" target="main_page" >S'authentifier</a>
+      </td><td id="separator">&nbsp; | &nbsp;</td>
+      <td><a href="inscription.html" id="topLinkInscrip" target="main_page"> S'inscrire</a>
+      </td>
+      <td id="LoggedUser">Connecté en tant que : <b><script>document.write(sessionStorage.getItem("UserLogged"))</script></b>&nbsp;&nbsp;</td>
+      <td><a href="index.html" id="topLinkDeconnect"  target="_top" value="Se déconnecter" onclick="logOut()" style=" color:red margin-left: 85%; " class="btn btn-primary" > Se déconnecter</a>
+   		</td>
+   		</tr>
+   	</table>
+   <script>
+   	function doVerifLoggedUser(){
+   		
+   	if(sessionStorage.getItem("UserLogged") == null){
+   		document.getElementById("topLinkConnect").setAttribute('style', 'display: block');
+   		document.getElementById("topLinkDeconnect").setAttribute('style', 'display: none');
+   		document.getElementById("topLinkInscrip").setAttribute('style', 'display: block');
+   		document.getElementById("separator").setAttribute('style', 'display: block');
+   		document.getElementById("LoggedUser").setAttribute('style', 'display: none');
+   	}
+   	else{
+   		document.getElementById("topLinkConnect").setAttribute('style', 'display: none');
+   		document.getElementById("topLinkDeconnect").setAttribute('style', 'display: block');
+   		document.getElementById("topLinkInscrip").setAttribute('style', 'display: none');
+   		document.getElementById("separator").setAttribute('style', 'display: none');
+   		document.getElementById("LoggedUser").setAttribute('style', 'display: block');
+   	}
+   	}
+   </script>
+   </body>
+
+</html>

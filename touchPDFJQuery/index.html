@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8">
+  <title>test pdf</title>
+  <link href="jquery.touchPDF.css" rel="stylesheet" />
+	<style>
+		body , html{
+			background-color: #404040;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+		}
+		
+    @media only screen and (orientation:portrait){
+        #myPDF { display:none; }
+        #warning-message { display:block; }
+    }
+    @media only screen and (orientation:landscape){
+        #warning-message { display:none; }
+    }
+       
+			/* following three (cascaded) are equivalent to above three meta viewport statements */
+			/* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+			/* see http://dev.w3.org/csswg/css-device-adapt/ */
+			@-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+			@-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+			/*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+		
+	</style>
+	
+  <script type="text/javascript" src="pdf.js"></script>
+
+</head>
+<!-- onload="getPageNumber();" -->
+<body >
+
+<div id="myPDF" style="height: 100%; width: 100%; margin: auto;"></div>
+
+<div id="warning-message">this website is only viewable in landscape mode</div>
+
+<script type="text/javascript" src="pdf.compatibility.js"></script>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.touchSwipe.js"></script>
+<script type="text/javascript" src="jquery.touchPDF.js"></script>
+
+<script type="text/javascript" src="jquery.panzoom.js"></script>
+<script type="text/javascript" src="jquery.mousewheel.js"></script>
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript">
+	
+	$(function() {
+		$("#myPDF").pdf( {
+			
+			source: "../file-uploading/uploads/"+sessionStorage.getItem("filePDF")
+		} );
+	});
+
+</script>
+</body>
+</html>

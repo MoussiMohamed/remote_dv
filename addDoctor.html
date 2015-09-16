@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<!--
+	* Please see the included README.md file for license terms and conditions.
+	-->
+	<head>
+		<title>E-ADV</title>
+		<meta http-equiv       = "Content-type" content="text/html; charset=utf-8">
+
+  
+		<!--
+		* The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+		* Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+		* For a quick overview of "meta viewport" and @viewport, see this article:
+		*   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+		* To see how it works, try your app on a real device with and without a "meta viewport" tag.
+		* Additional useful references include:
+		*   http://www.quirksmode.org/mobile/viewports.html
+		*   http://www.quirksmode.org/mobile/metaviewport/devices.html
+		*   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+		-->
+
+		<!-- <meta name        = "viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+		<meta name             = "viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+		<!-- <meta name        = "viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+		<style>
+			/* following three (cascaded) are equivalent to above three meta viewport statements */
+			/* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+			/* see http://dev.w3.org/csswg/css-device-adapt/ */
+			@-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+			@-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+			/*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+		</style>
+
+		<!--    <link rel      = "stylesheet" href="css/app.css">-->
+		<link rel              = "stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css">
+		<link rel              = "stylesheet" href="css/manage_user.css">
+ <link rel="stylesheet" href="file-uploading/style.css" type="text/css" />
+		<!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+		<!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+		<!-- <script src       = "http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+		<!-- Recommended location for your JavaScript libraries -->
+		<!-- These library references (below) are just examples to give you the general idea... -->
+		<!-- <script src       = "lib/mc/hammer.js"></script> -->
+		<!-- <script src       = "lib/ft/fastclick.js"></script> -->
+
+		<!--
+		* cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+		* Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+		* The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+		* You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+		-->
+		<!-- <script src       = "cordova.js" id="xdkJScordova_"></script>-->
+
+		<script src            = "js/app.js"></script>
+		<!-- for your event code, see README and file comments for details -->
+		<script src            = "js/init-app.js"></script>
+		<!-- for your init code, see README and file comments for details -->
+		<script src            = "xdk/init-dev.js"></script>
+		<!-- normalizes device and document ready events, see file for details -->
+		<script type           = "application/javascript" src="jquery-ui-1.11.2/external/jquery/jquery.js"></script>
+		<!--import jquery js for register and login form-->
+		<script type           = "application/javascript" src="js/manage_doctor.js"></script>
+<script type           = "application/javascript" src="js/authorization.js"></script>
+	</head>
+
+	<body onload="getAuthorization()">
+
+		<!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+		<!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+		<!-- <script src       = "http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+		<div class             = "container">
+			<div class            = "row">
+				<div class           = "col-md-6 col-md-offset-3">
+					<div class          = "panel panel-login">
+						<div class         = "panel-heading">
+							<div class        = "row">
+								<div class       = "col-xs-6">
+									<a href         = "" class="active" id="register-form-link">Ajouter un médecin</a>
+									<a href         = "listDoctor.html" class="active" id="register-form-link">liste des médecins</a>
+									
+								</div>
+								
+							</div>
+							<hr>
+						</div>
+						<div class         = "panel-body">
+							<div class        = "row">
+								<div class       = "col-lg-12">
+
+									<form id        = "register-form" action="" method="post" role="form" style="display: block;">
+										<div class     = "form-group">
+											<input type   = "text" name="name" id="name" required="require" tabindex="1" class="form-control" placeholder="Nom" value="">
+										</div>
+										<div class     = "form-group">
+											<input type   = "text" name="surname" id="surname" required="require" tabindex="1" class="form-control" placeholder="Prenom" value="">
+										</div>
+										<div class     = "form-group">
+											<input type   = "tel" name="tel" id="tel" required="require" tabindex="1" class="form-control" placeholder="Tel" value="">
+										</div>
+										<div class     = "form-group">
+											<input type   = "tel" name="fax" id="fax" tabindex="1" class="form-control" placeholder="Fax" value="">
+										</div>
+										<div class     = "form-group">
+											<input type   = "text" name="adresse" id="adresse" tabindex="1" class="form-control" placeholder="Adresse" value="">
+										</div>
+										<div class     = "form-group">
+											<input type   = "email" name="email" id="email" required="require" tabindex="1" class="form-control" placeholder="Adresse e-mail" value="">
+										</div>
+										
+										
+										<div class     = "form-group">
+											<div class    = "row">
+												<div class   = "col-sm-6 col-sm-offset-3">
+													<input type = "submit" id="btnAddDoctor" tabindex="3" class="form-control btn btn-register" value="Enregistrer" >
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div id                = "ResponseDiv">
+			responsive div
+		</div> -->
+<div id="footer">
+<label>By <a href="http://www.interactions.tn" target="_top">Interactions</a></label>
+</div>
+	</body>
+</html>
