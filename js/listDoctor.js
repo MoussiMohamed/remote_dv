@@ -28,7 +28,7 @@ $(document).ready(function() {
                     response.d[i].email,
                     response.d[i].date_creation,
                     '<input type="button"  class="btn btn-primary btn-xs" value = "Modifier" onClick="Javascript:changeScreanToEdit(this)" >',
-                    '<input type="button" class="btn btn-danger btn-xs" value = "Supprimer" data-title="Delete" data-toggle="modal" onClick="Javascript:getIdUser(this)" data-target="#delete" >'
+                    '<input type="button" class="btn btn-danger btn-xs" value = "Supprimer" data-title="Delete" data-toggle="modal" onClick="Javascript:getIdDoctor(this)" data-target="#delete" >'
                 ] ).draw();
          
               
@@ -85,7 +85,7 @@ function HandleResponse(response)
   document.getElementById('responseHome').innerHTML = response;
 }
 
-function getIdUser(obj){
+function getIdDoctor(obj){
     var t = document.getElementById("myTable");
     
     var rowCounts = t.rows.length;
@@ -95,22 +95,22 @@ function getIdUser(obj){
 var indexs = obj.parentNode.parentNode.rowIndex;
 var elemts = t.rows[indexs].cells[0].innerHTML;
 
-sessionStorage.setItem("iduser",elemts);
+sessionStorage.setItem("idDoctor",elemts);
 sessionStorage.setItem("selectedRowIndex",indexs);
 }
 
 
-function deleteRow(selectedRow,idUsr) {
+function deleteRow(selectedRow,id_doctor) {
     var table = document.getElementById("myTable");
             var rowCount = table.rows.length;
 
 updReq = getXMLHttp();
     // Create some variables we need to send to our PHP file
-    var url = "../E-adv/server/deleteUser.php";
+    var url = "../E-adv/server/deleteDoctor.php";
     
 	updReq.open('POST', url, true);
         updReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        var vars="index="+idUsr;
+        var vars="id_doctor="+id_doctor;
         updReq.onreadystatechange = function() {//Call a function when the state changes.
                 if(updReq.readyState == 4 && updReq.status == 200) {
 //HandleResponseDelete(updReq.responseText);
@@ -139,7 +139,7 @@ function editUser(obj) {
 
 updReq = getXMLHttp();
     // Create some variables we need to send to our PHP file
-    var url = "../E-adv/server/editUser.php";
+    var url = "../E-adv/server/editDoctor.php";
     
     
 	updReq.open('POST', url, true);
@@ -148,8 +148,6 @@ updReq = getXMLHttp();
         updReq.onreadystatechange = function() {//Call a function when the state changes.
                 if(updReq.readyState == 4 && updReq.status == 200) {
 //HandleResponse(updReq.responseText);
-
-table.deleteRow(index);
 
    
     }

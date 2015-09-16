@@ -1,4 +1,4 @@
-ï»¿function getXMLHttp()
+function getXMLHttp()
 {
   var xmlHttp
 
@@ -30,13 +30,13 @@
   return xmlHttp;
 }
 
-function changeScreanToEdit(id_User){
+function changeScreanToEdit(id_doctor){
 	var table = document.getElementById("myTable");
             var rowCount = table.rows.length;
             
     		var row = table.insertRow(rowCount);
     
-    var index = id_User.parentNode.parentNode.rowIndex;
+    var index = id_doctor.parentNode.parentNode.rowIndex;
 	var elemt = table.rows[index].cells[0].innerHTML;
 	var elemtName = table.rows[index].cells[1].innerHTML;
 	var elemtSurname = table.rows[index].cells[2].innerHTML;
@@ -44,34 +44,31 @@ function changeScreanToEdit(id_User){
 	var elemtFax = table.rows[index].cells[4].innerHTML;
 	var elemtAdresse = table.rows[index].cells[5].innerHTML;
 	var elemtEmail = table.rows[index].cells[6].innerHTML;
-	var elemtPassword = table.rows[index].cells[7].innerHTML;
 	// Store
-sessionStorage.setItem("id_User", elemt);
+sessionStorage.setItem("id_doctor", elemt);
 sessionStorage.setItem("name", elemtName);
 sessionStorage.setItem("surname", elemtSurname);
 sessionStorage.setItem("tel", elemtTel);
 sessionStorage.setItem("fax", elemtFax);
 sessionStorage.setItem("adresse", elemtAdresse);
 sessionStorage.setItem("email", elemtEmail);
-sessionStorage.setItem("password", elemtPassword);
 
-	window.location.replace("editUser.html");
+	window.location.replace("editDoctor.html");
 }
-function doEditUser(){
+function doEditDoctor(){
 	 // Create our XMLHttpRequest object
     updReq = getXMLHttp();
     // Create some variables we need to send to our PHP file
-    var url = "../E-adv/server/editUser.php";
-    var id_Usr = sessionStorage.getItem("id_User");
+    var url = "../E-adv/server/editDoctor.php";
+    var id_doctor = sessionStorage.getItem("id_doctor");
     var name = document.getElementById("name").value;
     var surname = document.getElementById("surname").value;
     var tel = document.getElementById("tel").value;
     var fax = document.getElementById("fax").value;
     var adresse = document.getElementById("adresse").value;
     var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    var vars = "id_Usr="+id_Usr+"&name="+name+"&surname="+surname+"&tel="+tel+"&fax="+fax+"&adresse="+adresse+"&email="+email+"&password="+password;
-    
+    var vars = "id_doctor="+id_doctor+"&name="+name+"&surname="+surname+"&tel="+tel+"&fax="+fax+"&adresse="+adresse+"&email="+email;
+
 	updReq.open('POST', url, true);
         updReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
        
@@ -79,7 +76,7 @@ function doEditUser(){
                 if(updReq.readyState == 4 && updReq.status == 200) {
                 	//HandleResponseEdit(updReq.responseText);
                         
-                        window.location.replace("home.html");
+                        window.location.replace("listDoctor.html");
                 }
         }
         updReq.send(vars);
@@ -88,20 +85,18 @@ function doEditUser(){
 
 function doGetDataForEdit(){
 	if(sessionStorage.getItem("UserLogged") == null
-	|| sessionStorage.getItem("UserAuthorized") == "Utilisateur non autorisÃ© !"){
-		alert("Permission non accordÃ©e !\nVeuillez saisir vos paramÃ¨tres d'accÃ¨s");
+	|| sessionStorage.getItem("UserAuthorized") == "Utilisateur non autorisé !"){
+		alert("Permission non accordée !\nVeuillez saisir vos paramètres d'accès");
 		window.open("index.html","_top");
 		//window.location.replace("index.html","_top");
 		sessionStorage.clear();
 	}
-	 
     document.getElementById("name").value = sessionStorage.getItem("name");
     document.getElementById("surname").value = sessionStorage.getItem("surname");
     document.getElementById("tel").value = sessionStorage.getItem("tel");
     document.getElementById("fax").value = sessionStorage.getItem("fax");
     document.getElementById("adresse").value = sessionStorage.getItem("adresse");
     document.getElementById("email").value = sessionStorage.getItem("email");
-    document.getElementById("password").value = sessionStorage.getItem("password");
 }
 
 // HandleResponse
